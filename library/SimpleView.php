@@ -21,8 +21,11 @@ class SimpleView {
 		$this->page = $page;
 		$this->store = array(); # clean out the store
 		
-		if(!$template && isset($page['template'])) $template = $page['template'];
-		else throw new Exception('Template not defined');
+		if(!$template && isset($page['template'])) {
+			$template = $page['template'];
+		} elseif(!$template) {
+			throw new Exception('Template not defined');
+		}
 		
 		return $this->inc($template);
 	}
